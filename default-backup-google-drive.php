@@ -64,7 +64,7 @@ $client = getClient();
 $service = new Google_Service_Drive($client);
 
 // Print the names and IDs for up to 10 files.
-$optParams = array(
+/*$optParams = array(
     'pageSize' => 10,
     'fields' => 'nextPageToken, files(id, name)'
 );
@@ -77,7 +77,7 @@ if (count($results->getFiles()) == 0) {
     foreach ($results->getFiles() as $file) {
         printf("%s (%s)\n", $file->getName(), $file->getId());
     }
-}
+}*/
 
 $file = new Google_Service_Drive_DriveFile();
 //PMB 1pOg4XlExRpdOucszid8RoBj2MVoHUtx_
