@@ -65,9 +65,8 @@ $service = new Google_Service_Drive($client);
 
 // Print the names and IDs for up to 10 files.
 $optParams = array(
-    'data' => "./sql/",
-    'mimeType' => 'application/octet-stream',
-    'uploadType' => 'media'
+    'pageSize' => 10,
+    'fields' => 'nextPageToken, files(id, name)'
 );
 $results = $service->files->listFiles($optParams);
 
