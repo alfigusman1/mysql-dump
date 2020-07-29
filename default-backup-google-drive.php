@@ -78,3 +78,32 @@ if (count($results->getFiles()) == 0) {
         printf("%s (%s)\n", $file->getName(), $file->getId());
     }
 }
+
+$file = new Google_Service_Drive_DriveFile();
+//PMB 1pOg4XlExRpdOucszid8RoBj2MVoHUtx_
+//PMB -> Databases 1ACG8WIpj9MHC3RzwHmeHL9H2ZgjaYaE8
+//PMB -> Databases -> Pascasarjana 1bgh_9Q8Du__EF57R0b1gtioNIsiiJ7qo
+//PMB -> Databases -> Sarjana 1dkb2YIGNNNb8noy7rx-W-VXb5MwYm7if
+$parentId = "1dkb2YIGNNNb8noy7rx-W-VXb5MwYm7if";
+$file->setParents(array($parentId));
+
+if ($handle = opendir('./sql/')) {
+    while (false !== ($entry = readdir($handle))) {
+        if ($entry != "." && $entry != "..") {
+            //echo "$entry\n";
+            // set nama file di Google Drive disesuaikan dg nama file aslinya
+            $file->setName($entry);
+            // proses upload file ke Google Drive dg multipart
+            $result = $service->files->create($file,
+                array(
+                    'data' => file_get_contents("./sql/$entry"),
+                    'mimeType' => 'application/octet-stream',
+                    'uploadType' => 'multipart'
+                )
+            );
+            // menampilkan nama file yang sudah diupload ke google drive
+            echo $result->name."\n";
+        }
+    }
+    closedir($handle);
+}
