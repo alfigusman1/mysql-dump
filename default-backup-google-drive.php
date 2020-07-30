@@ -13,7 +13,8 @@ function getClient()
 {
     $client = new Google_Client();
     $client->setApplicationName('Google Drive API PHP Quickstart');
-    $client->setScopes(Google_Service_Drive::DRIVE_METADATA_READONLY);
+    //$client->setScopes(Google_Service_Drive::DRIVE_METADATA_READONLY);
+    $client->addScope(Google_Service_Drive::DRIVE);
     $client->setAuthConfig('oauth-credentials.json');
     $client->setAccessType('offline');
     $client->setPrompt('select_account consent');
