@@ -2,9 +2,9 @@
 ini_set('display_errors', 1);
 require __DIR__ . '/vendor/autoload.php';
 
-if (php_sapi_name() != 'cli') {
-    throw new Exception('This application must be run on the command line.');
-}
+//if (php_sapi_name() != 'cli') {
+//    throw new Exception('This application must be run on the command line.');
+//}
 
 /**
  * Returns an authorized API client.
@@ -82,10 +82,6 @@ if (count($results->getFiles()) == 0) {
 }*/
 
 $file = new Google_Service_Drive_DriveFile();
-//PMB 1pOg4XlExRpdOucszid8RoBj2MVoHUtx_
-//PMB -> Databases 1ACG8WIpj9MHC3RzwHmeHL9H2ZgjaYaE8
-//PMB -> Databases -> Pascasarjana 1bgh_9Q8Du__EF57R0b1gtioNIsiiJ7qo
-//PMB -> Databases -> Sarjana 1dkb2YIGNNNb8noy7rx-W-VXb5MwYm7if
 $parentId = "1dkb2YIGNNNb8noy7rx-W-VXb5MwYm7if";
 $file->setParents(array($parentId));
 
