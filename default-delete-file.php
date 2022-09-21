@@ -5,13 +5,17 @@ $database = array(
 );
 for ($i = 0; $i < sizeof($database); $i++) {
     $dir = './sql/' . $database[$i];
-    if ($handle = opendir($dir)) {
-        while (false !== ($entry = readdir($handle))) {
-            if ($entry != "." && $entry != "..") {
-                unlink($dir . '/' . $entry);
-                echo "$entry <br />";
+    if (file_exists($dir)) {
+        if ($handle = opendir($dir)) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+                    unlink($dir . '/' . $entry);
+                    echo "$entry <br />";
+                }
             }
+            closedir($handle);
         }
-        closedir($handle);
+    } else {
+        echo $dir . ' not found.';
     }
 }
