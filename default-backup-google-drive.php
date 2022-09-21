@@ -82,26 +82,33 @@ if (count($results->getFiles()) == 0) {
 }*/
 
 $file = new Google_Service_Drive_DriveFile();
-$parentId = "1dkb2YIGNNNb8noy7rx-W-VXb5MwYm7if";
-$file->setParents(array($parentId));
-
-if ($handle = opendir('./sql/')) {
-    while (false !== ($entry = readdir($handle))) {
-        if ($entry != "." && $entry != "..") {
-            //echo "$entry\n";
-            // set nama file di Google Drive disesuaikan dg nama file aslinya
-            $file->setName($entry);
-            // proses upload file ke Google Drive dg multipart
-            $result = $service->files->create($file,
-                array(
-                    'data' => file_get_contents("./sql/$entry"),
-                    'mimeType' => 'application/octet-stream',
-                    'uploadType' => 'multipart'
-                )
-            );
-            // menampilkan nama file yang sudah diupload ke google drive
-            echo $result->name."\n";
+// parentId == folder id google drive
+$databases[] = array("database" => '', "parentId" => '');
+foreach ($databases as $a) {
+    $file->setParents(array($a['parentId']));
+    $dir = dirname(__FILE__) . '/sql/' . $a['database'];
+    if (file_exists($dir)) {
+        if ($handle = opendir($dir)) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+                    // set nama file di Google Drive disesuaikan dg nama file aslinya
+                    $file->setName($entry);
+                    // proses upload file ke Google Drive dg multipart
+                    $result = $service->files->create(
+                        $file,
+                        array(
+                            'data' => file_get_contents($dir . '/' . $entry),
+                            'mimeType' => 'application/octet-stream',
+                            'uploadType' => 'multipart'
+                        )
+                    );
+                    // menampilkan nama file yang sudah diupload ke google drive
+                    echo $result->name . "\n";
+                }
+            }
+            closedir($handle);
         }
+    } else {
+        echo $dir . ' not found. <br>';
     }
-    closedir($handle);
 }
