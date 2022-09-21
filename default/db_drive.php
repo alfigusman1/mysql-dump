@@ -103,7 +103,7 @@ foreach ($databases as $a) {
                         )
                     );
                     // menampilkan nama file yang sudah diupload ke google drive
-                    echo $result->name . "\n";
+                    echo $result->name . "\n\r <br>";
                 }
             }
             closedir($handle);
