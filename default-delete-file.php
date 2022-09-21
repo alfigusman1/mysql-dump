@@ -16,6 +16,6 @@ for ($i = 0; $i < sizeof($database); $i++) {
             closedir($handle);
         }
     } else {
-        echo $dir . ' not found.';
+        echo $dir . ' not found. <br>';
     }
 }
