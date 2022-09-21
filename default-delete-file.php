@@ -4,7 +4,7 @@ $database = array(
     "db_database",
 );
 for ($i = 0; $i < sizeof($database); $i++) {
-    $dir = './sql/' . $database[$i];
+    $dir = dirname(__FILE__) . '/sql/' . $database[$i];
     if (file_exists($dir)) {
         if ($handle = opendir($dir)) {
             while (false !== ($entry = readdir($handle))) {
