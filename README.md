@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/googleapis/google-api-php-client.svg?branch=master)](https://travis-ci.org/googleapis/google-api-php-client)
-
-# Google APIs Client Library for PHP #
+# Auto Backup MySQL Database to Google Drive #
 
 The Google API Client Library enables you to work with Google APIs such as Gmail, Drive or YouTube on your server.
 
