@@ -14,8 +14,8 @@ for ($i = 0; $i < sizeof($database); $i++) {
                     $zip->addFile($dir . '/' . $entry, $entry);
                 }
             }
-            echo json_encode($zip);
             $zip->close();
+            echo json_encode($zip);
             closedir($handle);
         }
     } else {
