@@ -11,8 +11,10 @@ $pass = '';
 $host = 'localhost';
 for ($i = 0; $i < sizeof($database); $i++) {
     $dir = dirname(__FILE__) . '/sql/' . $database[$i] . '/';
+    $compressed = dirname(__FILE__) . '/compressed/' . $database[$i] . '/';
     if (!file_exists($dir)) {
         mkdir($dir, 0777, true);
+        mkdir($compressed, 0777, true);
     }
     $dir .= $database[$i] . '_' . date('YmdHis') . '.sql';
     echo "<h3>Backing up database to `<code>{$dir}</code>`</h3>";
