@@ -86,7 +86,7 @@ $file = new Google_Service_Drive_DriveFile();
 $databases[] = array("database" => '', "parentId" => '');
 foreach ($databases as $a) {
     $file->setParents(array($a['parentId']));
-    $dir = dirname(__FILE__) . '/sql/' . $a['database'];
+    $dir = dirname(__FILE__) . '/compressed/' . $a['database'];
     if (file_exists($dir)) {
         if ($handle = opendir($dir)) {
             while (false !== ($entry = readdir($handle))) {
@@ -103,7 +103,13 @@ foreach ($databases as $a) {
                         )
                     );
                     // menampilkan nama file yang sudah diupload ke google drive
-                    echo $result->name . "\n\r <br>";
+                    // echo $result->name . "\n\r <br>";
+                    if($result->name == $entry){
+                        if ($entry != "." && $entry != "..") {
+                            unlink($dir . '/' . $entry);
+                            echo $result->name . '-' .  $entry. "<br />";
+                        }
+                    }
                 }
             }
             closedir($handle);
