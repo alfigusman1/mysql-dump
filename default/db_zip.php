@@ -14,8 +14,15 @@ for ($i = 0; $i < sizeof($database); $i++) {
                     $zip->addFile($dir . '/' . $entry, $entry);
                 }
             }
+            if(!$zip->status){
+                while (false !== ($entry = readdir($handle))) {
+                    if ($entry != "." && $entry != "..") {
+                        unlink($dir . '/' . $entry);
+                        echo "$entry <br />";
+                    }
+                }
+            }
             $zip->close();
-            echo json_encode($zip);
             closedir($handle);
         }
     } else {
