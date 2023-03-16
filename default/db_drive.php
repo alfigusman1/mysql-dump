@@ -107,7 +107,7 @@ foreach ($databases as $a) {
                     if($result->name == $entry){
                         if ($entry != "." && $entry != "..") {
                             unlink($dir . '/' . $entry);
-                            echo $result->name . '-' .  $entry. "<br />";
+                            echo $result->name . ' - ' .  $entry. "<br />";
                         }
                     }
                 }
