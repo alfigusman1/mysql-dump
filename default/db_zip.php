@@ -4,6 +4,7 @@ $database = array(
     "db_database",
 );
 for ($i = 0; $i < sizeof($database); $i++) {
+    $delete = null;
     $dir = dirname(__FILE__) . '/sql/' . $database[$i];
     if (file_exists($dir)) {
         if ($handle = opendir($dir)) {
@@ -14,16 +15,20 @@ for ($i = 0; $i < sizeof($database); $i++) {
                     $zip->addFile($dir . '/' . $entry, $entry);
                 }
             }
-            if(!$zip->status){
+            $delete = $zip->status;
+            $zip->close();
+            closedir($handle);
+        }
+        if ($delete == "0"){
+            if ($handle = opendir($dir)) {
                 while (false !== ($entry = readdir($handle))) {
                     if ($entry != "." && $entry != "..") {
                         unlink($dir . '/' . $entry);
                         echo "$entry <br />";
                     }
                 }
+                closedir($handle);
             }
-            $zip->close();
-            closedir($handle);
         }
     } else {
         echo $dir . ' not found. <br>';
