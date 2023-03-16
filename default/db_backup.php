@@ -14,6 +14,8 @@ for ($i = 0; $i < sizeof($database); $i++) {
     $compressed = dirname(__FILE__) . '/compressed/' . $database[$i] . '/';
     if (!file_exists($dir)) {
         mkdir($dir, 0777, true);
+    }
+    if (!file_exists($compressed)) {
         mkdir($compressed, 0777, true);
     }
     $dir .= $database[$i] . '_' . date('YmdHis') . '.sql';

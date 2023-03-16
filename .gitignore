@@ -5,3 +5,7 @@ last_config/*/
 last_config/*/*
 oauth-credentials.json
 token.json
+db_backup.php
+db_delete.php
+db_drive.php
+db_zip.php
