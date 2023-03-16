@@ -9,7 +9,7 @@ for ($i = 0; $i < sizeof($database); $i++) {
     if (file_exists($dir)) {
         if ($handle = opendir($dir)) {
             $zip = new ZipArchive();
-            $zip->open('compressed/'. $database[$i] .'/'. $database[$i] .'_'. date('YmdHis') .'.zip', ZipArchive::CREATE);
+            $zip->open('compressed/'. $database[$i] .'/'. $database[$i] .'_'. date('Y_m_d_H_i_s') .'.zip', ZipArchive::CREATE);
             while (false !== ($entry = readdir($handle))) {
                 if ($entry != "." && $entry != "..") {
                     $zip->addFile($dir . '/' . $entry, $entry);
