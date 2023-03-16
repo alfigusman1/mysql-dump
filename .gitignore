@@ -10,3 +10,9 @@ db_delete.php
 db_drive.php
 db_zip.php
 db_*.php
+sql/*
+!sql/
+!sql/index.html
+compressed/*
+!compressed/
+!compressed/index.html
